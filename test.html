@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>class</title>
+</head>
+<script type="text/javascript" src = 'https://code.createjs.com/createjs-2015.11.26.min.js'></script>
+<script type="text/javascript" src="http://d309knd7es5f10.cloudfront.net/zim_2.4.js"></script>
+<script type="text/javascript" src = 'smm/SMM_method.js'></script>
+<script type="text/javascript" src = 'smm/SMM_dom.js'></script>
+<script type="text/javascript" src = 'smm/SMM_canvas.js'></script>
+<body>
+	<h1 id='fname'>jason</h1>
+	<script>
+
+	/*=========check the interface=========*/
+		for(prop in SMM){
+			console.log(prop);
+		}
+	/*=========SMM.rand===========*/
+		console.log(SMM.rand(0,10,"round")); // return integer [0,10];
+		console.log(SMM.rand(0,10,"ceil"));	// rerurn integer [1,10]
+		console.log(SMM.rand(0,10,"floor"));	// rerurn integer [0,9]
+		console.log(SMM.rand(0,10,"worngkeyword")); // return wrong;
+
+	/*=========SMM.randColor===========*/
+		console.log(SMM.randColor()); // return rgba(randNUm,randNum,randNum,1)
+		console.log(SMM.randColor(0.4)); // return rgba(randNUm,randNum,randNum,0.4->opacity)
+
+	/*=========SMM.randColorArr===========*/
+		console.log(SMM.randColorArr()); //return one of default ["salmon", "skyblue", "goldenrod"]
+		console.log(SMM.randColorArr("red", "orange")); //return one of default arr = ["red", "orange", "goldenrod"]
+		console.log(SMM.randColorArr("red", "orange", "tomato")); //return one of  ["red", "orange", "tomato"]
+		console.log(SMM.randColorArr("red", "orange", "tomato","black", "white", "green")); //return one of  ["red", "orange", "tomato","black", "white", "green"]
+	/*==============SMM.log;===============*/
+
+		SMM.log("smmlog") // ==  console.log();
+
+	/*==============test dom*==============*/
+		// var fname = SMM.getId("name"); 
+		//  var fname =document.getElementById("name"); 
+		// fname.style.color='red';
+		// console.dir(name);
+	/*============test failed===========*/
+
+	/*/*============ canvas===========*/
+	// =====================================
+
+	/*=============SMM.Canvas==============*/
+		var canvas  = new SMM.Canvas();
+		canvas.getCanvas("myCanvas","skyblue");
+		SMM.log(canvas);
+		var stage = new createjs.Stage("myCanvas");
+		var stageW = stage.canvas.width = window.innerWidth;
+		var stageH = stage.canvas.height = window.innerHeight;
+		// stage.compositeOperation = "lighter";
+	/*=============SMM.Ticker==============*/
+			SMM.Ticker(stage,70);
+	/*=============SMM.Waiter==============*/
+		var waiter = new SMM.Waiter(stage,22);
+			stage.addChild(waiter);
+			waiter.x = 555;
+			waiter.y = stageH/2;
+			waiter.show();
+			
+	/*=============SMM.Draw==============*/
+
+		var c = new SMM.DrawC(stage,1,1,30,"red",100,100);
+		stage.addChild(c);
+		/*this.randPoX()/ randPoY()*/
+		c.randPoX(100,400);
+		c.randPoY(460,500);
+		c.randPoX(100,222).randPoY(460,500);
+		c.shake(100,1111); //Parameter: range speed
+		c.shake();//10 1111 by defalt
+		/*test in for loop*/	
+		for (var i = 0; i < 4; i++) {
+			var d = new SMM.DrawC(stage,1,1,30,"green",100,100);
+			d.alpha = SMM.rand(0,1)
+			stage.addChild(d);
+			d.randPoY(100,400);
+			d.shake(SMM.rand(20,12),SMM.rand(400,1000));
+		};	
+		var d = new SMM.DrawC(stage,1,1,30,"yellow",100,100);
+		stage.addChild(d);
+		d.x = stageW/2;
+		d.y = stageH/2;
+		/**/
+		d.rotate(70,1000);// Parameter: reg, speed
+		d.drag();
+		/*for loop test multi spot random move */
+		var arr= [];
+		for (var i = 0; i < 10; i++) {
+			dl(SMM.rand(1,10),SMM.rand(300, 1000)); // random size , random speed
+		};
+		function dl(c,s){
+			var f = new SMM.DrawC(stage,0,0,c,"#141b35",500,500);
+			stage.addChild(f);
+			f.randMove(s,true);	
+			f.alpha = SMM.rand(0.4,0.8);
+			arr.push(f);
+		}
+
+		var g = new SMM.DrawC(stage, 0,0,20, "teal", 500,100);
+		stage.addChild(g);
+		g.drop(400,222);
+
+		function ss(){
+			console.log("ss");
+		}
+		
+		g.dragCopy();
+
+
+
+
+
+		
+
+	 
+
+		stage.update();
+	</script>
+</body>
+</html>
