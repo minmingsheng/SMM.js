@@ -89,7 +89,7 @@ var SMM = function(SMM){
 	}
 	createjs.extend(SMM.Waiter, createjs.Container); // for some reason gave error if put below where we use the class
 	createjs.promote(SMM.Waiter, "Container");
-	SMM.Ticker=function(x,y){
+	SMM.Ticker=function(x,y){/*stage*/ /*fps*/
 		if(x == null) return;
 		y = y || 40
 		createjs.Ticker.setFPS(y);
@@ -134,7 +134,7 @@ var SMM = function(SMM){
 			that.y= SMM.rand(x1,x2,"round");
 			return this;
 		}
-		this.shake=function(r,s,fn){
+		this.shake=function(r,s,fn){ /*range*/ /*speed */ /*callback*/
 			var that= this;
 			fn = fn || function(){
 				return that;
@@ -164,8 +164,9 @@ var SMM = function(SMM){
 			},s).call(fn);
 			return this;
 		}
-		this.randMove = function (s, tf, fn){ /*speed*/ /*callback fn*//*loop*/
+		this.randMove = function (s, tf, range,fn){ /*speed*/ /*callback fn*//*loop*/
 			var that=this;
+			range = range || 300;
 			tf = tf || false;
 			s = s || 1000;
 			fn = fn || function(){
@@ -173,29 +174,29 @@ var SMM = function(SMM){
 			};
 			var ox=that.x, oy=that.y;
 			createjs.Tween.get(that,{loop:tf}).to({
-				x: that.x + SMM.rand(0,300),
-				y: that.y + SMM.rand(0,300)
+				x: that.x + SMM.rand(0,range),
+				y: that.y + SMM.rand(0,range)
 			},s).to({
-				x: that.x + SMM.rand(0,300),
-				y: that.y + SMM.rand(0,300)
+				x: that.x + SMM.rand(0,range),
+				y: that.y + SMM.rand(0,range)
 			},s).to({
-				x: that.x + SMM.rand(0,300),
-				y: that.y + SMM.rand(0,300)
+				x: that.x + SMM.rand(0,range),
+				y: that.y + SMM.rand(0,range)
 			},s).to({
-				x: that.x + SMM.rand(0,300),
-				y: that.y + SMM.rand(0,300)
+				x: that.x + SMM.rand(0,range),
+				y: that.y + SMM.rand(0,range)
 			},s).to({
-				x: that.x + SMM.rand(0,300),
-				y: that.y + SMM.rand(0,300)
+				x: that.x + SMM.rand(0,range),
+				y: that.y + SMM.rand(0,range)
 			},s).to({
-				x: that.x + SMM.rand(0,300),
-				y: that.y + SMM.rand(0,300)
+				x: that.x + SMM.rand(0,range),
+				y: that.y + SMM.rand(0,range)
 			},s).to({
-				x: that.x + SMM.rand(0,300),
-				y: that.y + SMM.rand(0,300)
+				x: that.x + SMM.rand(0,range),
+				y: that.y + SMM.rand(0,range)
 			},s).to({
-				x: that.x + SMM.rand(0,300),
-				y: that.y + SMM.rand(0,300)
+				x: that.x + SMM.rand(0,range),
+				y: that.y + SMM.rand(0,range)
 			},s).to({
 				x: ox,
 				y: oy
