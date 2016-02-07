@@ -89,8 +89,11 @@ var SMM = function(SMM){
 	}
 	createjs.extend(SMM.Waiter, createjs.Container); // for some reason gave error if put below where we use the class
 	createjs.promote(SMM.Waiter, "Container");
-	SMM.Ticker=function(x,y){/*stage*/ /*fps*/
+	SMM.Ticker=function(x,y, fn){/*stage*/ /*fps*/
 		if(x == null) return;
+		fn = fn || function(){
+			x.update();
+		}
 		y = y || 40
 		createjs.Ticker.setFPS(y);
 		ticker = createjs.Ticker.on("tick", function(){
@@ -101,10 +104,13 @@ var SMM = function(SMM){
 		if (stage == null) return;
 		x = x || 0;
 		y = y || 0;
-		r = r || SMM.rand(0,30);
+		// r = r || SMM.rand(0,30);
+		r = r || 20;
 		color = color || SMM.randColor();
-		px = px || SMM.rand(0, window.innerWidth);
-		py = py || SMM.rand(0, window.innerHeight);
+		// px = px || SMM.rand(0, window.innerWidth);
+		px = px || 0;
+		// py = py || SMM.rand(0, window.innerHeight);
+		py = py || 0;
 		this.Container_constructor();
 		var that = this;
 		this.drag =function(){
@@ -231,6 +237,14 @@ var SMM = function(SMM){
 					arr.push(newObj);
 			})
 			return this;
+		}
+		this.reflect = function(stageW, objX){
+			zim.drag(this);
+			var distance = stageW/2
+			console.log(this.x);
+			var obj = this.clone(true);
+			this.addChild(obj)
+			obj.x= (distance-objX)*2;
 		}
 	}
 

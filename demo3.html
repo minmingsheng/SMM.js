@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo 3</title>
+</head>
+<script type="text/javascript" src = 'https://code.createjs.com/createjs-2015.11.26.min.js'></script>
+<script type="text/javascript" src="http://d309knd7es5f10.cloudfront.net/zim_2.4.js"></script>
+<script type="text/javascript" src = 'smm/SMM_method.js'></script>
+<script type="text/javascript" src = 'smm/SMM_dom.js'></script>
+<script type="text/javascript" src = 'smm/SMM_canvas.js'></script>
+	<style>
+		body{
+			cursor: none;
+		}
+	</style>
+<body>
+	
+
+<script type="text/javascript">
+	/*canvas propery*/
+	var canvas  = new SMM.Canvas();
+	canvas.getCanvas("myCanvas","#4a2a38");
+	SMM.log(canvas);
+	var stage = new createjs.Stage("myCanvas");
+	var stageW = stage.canvas.width = window.innerWidth;
+	var stageH = stage.canvas.height = window.innerHeight;
+
+	/*text*/
+	var text1 = new createjs.Text("SNOW", "20px Arial", "snow");
+	text1.x = 100;
+	text1.y = 100;
+	text1.alpha = 0.4;
+
+	stage.addChild(text1);
+
+	// stage.update()
+	setTimeout(function(){
+		createjs.Tween.get(text1).to({
+			alpha : 0
+		},1000);
+
+	},100000);
+	/* */
+	var SMM=function(SMM){
+
+		SMM.draw2=function(){
+				var pic = new createjs.Bitmap("img/night.jpg");
+				pic.scaleX=0.9;
+				pic.scaleY=0.9;
+				stage.addChildAt(pic, 0);
+				stage.compositeOperation = "lighter";
+
+				var container = new createjs.Container();
+				container.compositeOperation = "lighter";
+				stage.addChild(container);
+
+				var num = 10;
+				setInterval(function(){
+					
+						var s = new SMM.DrawC(stage,0,0,SMM.rand(0,5),SMM.randColorArr("#9ac5ab", "#dee587", "#e0bb65","#d7d9da","snow"),SMM.rand(0,stageW), -SMM.rand(0,stageH/2));
+						var a = new SMM.DrawC(stage,0,0,SMM.rand(0,10),SMM.randColorArr("#9ac5ab", "#dee587", "#e0bb65","#d7d9da","snow"),SMM.rand(0,stageW), -SMM.rand(0,stageH/2));
+						a.alpha = 0.4;
+
+						 container.addChild(a);
+						 container.addChild(s);
+						 s.drop(stageH, 8000).shake(SMM.rand(10,100), 3000,removeC);
+			
+						console.log(container.numChildren);
+				},222);
+
+				function removeC(e){/*callback*/
+					createjs.Tween.get(e.target).to({
+						alpha:0
+					},2000).call(function(e){
+						container.removeChild(e.target);
+					})
+				}
+				console.log(container.numChildren);
+				SMM.Ticker(stage);
+		}
+
+
+		return SMM;
+	}(SMM||{});
+	
+
+			// SMM.draw1();
+
+			SMM.draw2();
+
+
+</script>
+</body>
+</html>

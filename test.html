@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>class</title>
+	<title>test</title>
 </head>
 <script type="text/javascript" src = 'https://code.createjs.com/createjs-2015.11.26.min.js'></script>
 <script type="text/javascript" src="http://d309knd7es5f10.cloudfront.net/zim_2.4.js"></script>
@@ -108,7 +108,27 @@
 			console.log("ss");
 		}
 		
-		g.dragCopy();
+		g.dragCopy();// teal ball
+
+		/*flip*/
+		var h = new SMM.DrawC(stage, 0,0,20, "black", 444,555);
+		stage.addChild(h);
+		
+
+		// var  o  = h.clone(true);
+		// stage.addChild(o);
+		// o.x =stageW/2-h.x;
+		console.log(stageW/2);
+		// console.log(o.x);
+		h.reflect(stageW, 444); // black
+		// window.addEventListener("mousemove", function(e){
+		// 	for (var i = 0; i <5; i++) {
+		// 		var  s =  new SMM.DrawC(stage, 0,0,SMM.rand(0,30), SMM.randColor(), e.pageX,e.pageY);
+		// 		stage.addChild(s);
+		// 		s.alpha = 0.5;
+		// 		s.reflect(stageW, e.pageX);
+		// 	};
+		// })
 
 
 
