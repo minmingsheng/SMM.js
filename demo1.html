@@ -108,6 +108,7 @@
 				function createParticles(size,a,x,y){
 					 s = new SMM.DrawC(stage,0,0,size,SMM.randColorArr("#9ac5ab", "#dee587", "#e0bb65","#d7d9da","snow"),x,y);
 					container.addChild(s);
+					s.cache(x-size,y-size,size*2,size*2);
 					s.alpha = SMM.rand(0.5,1);
 					s.randMove(250,true,SMM.rand(1,a),removeC);
 				}

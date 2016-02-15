@@ -97,6 +97,7 @@ var SMM = function(SMM){
 		y = y || 40
 		createjs.Ticker.setFPS(y);
 		ticker = createjs.Ticker.on("tick", function(){
+			fn();
 			x.update();
 		});
 	}
@@ -123,6 +124,7 @@ var SMM = function(SMM){
 		var shape = new createjs.Shape();
 		shape.graphics.f(color);
 		shape.graphics.dc(x,y,r);
+		
 		this.addChild(shape);
 		shape.x = px;
 		shape.y = py;
